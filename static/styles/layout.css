@@ -1,0 +1,39 @@
+       .collapsed-menu-item {
+            display: none;
+        }
+        /*hide menu items on resize and show dropdown "more" menu and add nenu items to dropdown*/
+        @media (max-width: 1500px) {
+            .menu-item:nth-child(n+8) {display: none}
+            .collapsed-menu-item:nth-child(n+8) {display: block}
+        }
+        @media (max-width: 1300px) {
+            .menu-item:nth-child(n+7) {display: none}
+            .collapsed-menu-item:nth-child(n+7) {display: block}
+
+        }
+        @media (max-width: 1100px) {
+            .menu-item:nth-child(n+6) {display: none}
+            .collapsed-menu-item:nth-child(n+6) {display: block}
+
+        }
+        @media (max-width: 1000px) {
+            .menu-item:nth-child(n+5) {display: none}
+            .collapsed-menu-item:nth-child(n+4) {display: block}
+        }
+
+        /*show all menu elements in mobile view and hide dropdown menu "more"*/
+
+        @media (max-width: 768px) {
+            .menu-item {
+                display: block !important;
+            }
+            #menu-colapsed {
+                display: none;
+            }
+        }
+
+        @media (min-width: 1500px) {
+            #menu-colapsed {
+                display: none;
+            }
+        }

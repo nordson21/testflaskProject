@@ -1,0 +1,157 @@
+/*Обнуление*/
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+*,*:before,*:after{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,header,aside{display: block;}
+html,body{
+	height: 100%;
+	width: 100%;
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+/*--------------------*/
+/*Обнуление закончено*/
+body{
+  font-family: "Open Sans", sans-serif;
+}
+/*Верхнее меню*/
+ul.topnav {
+    border-radius: 5px;
+    font-size:1.5vw;
+    list-style-type: none;
+    margin: 10px;
+    padding: 0;
+    overflow: hidden;
+     /* Цвет бэкграунда*/
+background: rgb(228,213,255);
+background: linear-gradient(0deg, rgba(228,213,255,1) 0%, rgba(255,255,255,1) 6%, rgba(255,255,255,1) 96%, rgba(228,213,255,1) 100%);
+    box-shadow: 2px 2px 10px 0px rgba(228,213,255,1);
+
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: #2f0a35; /*Цвет шрифта навбара*/
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #DAC5FF;} /*Цвет вкладки под мышкой*/
+
+ul.topnav li a.active {background-color: #CEB2FF;} /*Цвет активной вкладки*/
+
+
+@media screen and (max-width: 1200px){
+    ul.topnav {font-size:5vw;}
+    ul.topnav li.right,
+    ul.topnav li {float: none;}
+}
+/*Верхнее меню закончили*/
+/*Нижнее меню*/
+ul.footer {
+    position: sticky;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    font-size:1.5vw;
+    list-style-type: none;
+    margin: 10px;
+    padding: 0;
+    overflow: hidden;
+    flex-shrink: 0;
+     /* Цвет бэкграунда*/
+background: rgb(228,213,255);
+background: linear-gradient(0deg, rgba(228,213,255,1) 0%, rgba(255,255,255,1) 6%, rgba(255,255,255,1) 96%, rgba(228,213,255,1) 100%);
+    box-shadow: 2px 2px 10px 0px rgba(228,213,255,1);
+
+}
+
+/*ul.footer li {float: left;}*/
+ul.footer li a {
+    display: block;
+    color: #2f0a35; /*Цвет шрифта навбара*/
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+ul.footer li a:hover:not(.active) {background-color: #DAC5FF;} /*Цвет вкладки под мышкой*/
+ul.footer li a.active {background-color: #CEB2FF;} /*Цвет активной вкладки*/
+/*Нижнее меню закончили*/
+
+
+.icon{ /*Иконки*/
+    height: 40px;
+}
+/*начинаем сетку*/
+.grid{
+    display: flex;
+    justify-content: center;
+}
+.text{
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgray;
+    text-align: center;
+    /*автоматический размер шрифта, в зависимости от размера экрана*/
+    font-size: calc(20px + 0.390625vw);
+    max-width: 500px;
+}
+/*Заголовки у текстов*/
+.text .about{
+    font-style: italic;
+    font-weight: 600;
+}
+.photo{
+    margin: 10px;
+    border: 1px solid lightgray;
+    min-width: 600px;
+    display: flex;
+}
+img {
+    margin: auto;
+        max-width: 100%;
+}
+/*Тут адаптивность, если экран меньше 800 меняем направление флексбокса на столбец*/
+@media (max-width: 800px) {
+    .grid {
+        flex-direction: column;
+    }
+    .text {
+        max-width: 100%;
+    }
+    .photo{
+        min-width: 300px;
+    }
+}
+/*Переназначаем ссылки, что бы текст не синел и не фиолетовел*/
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}

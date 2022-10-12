@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel= "stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/index.css') }}">
+    <title>{{ title }}</title>
+
+  </head>
+
+<body>
+{#Хеадер#}
+<ul class="topnav">
+  <li><a class="active" href="#">На главную</a></li>
+  <li><a href="/photos">Галерея</a></li>
+  <li><a href="#">Контакты</a></li>
+</ul>
+
+
+{#Конец базового шаблона#}
+{%  block inbody_content %}
+{%  endblock inbody_content %}
+
+{#Конец базового шаблона#}
+{#Футер#}
+<ul class="footer">
+  <li><a href="#"><img class="icon" src="{{ url_for('static',filename='icons/insta.svg') }}" alt="" ></a></li>
+  <li><a href="#"><img class="icon" src="{{ url_for('static',filename='icons/vk.svg') }}" alt="" ></a></li>
+</ul>
+  </body>
+</html>
