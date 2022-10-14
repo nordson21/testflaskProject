@@ -5,12 +5,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():  # put application's code here
+    nav_act = "class=active"
     title = 'Фотограф Юлия Карелина'
     css = url_for('static', filename='styles/index.css')
-    return render_template('index.html', title=title, css=css)
+    return render_template('index.html', title=title, css=css, nav_act_index=nav_act)
+
+@app.route('/gallery')
+def samples():
+    nav_act = "class=active"
+    title = 'Галерея'
+    return render_template('gallery.html', title=title, nav_act_gallery=nav_act)
+
 @app.route('/about/')
 @app.route('/about')
-
 def about():
     title = 'Абамне'
     return 'Йа фатограф'

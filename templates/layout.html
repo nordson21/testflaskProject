@@ -11,9 +11,9 @@
 <body>
 {#Хеадер#}
 <ul class="topnav">
-  <li><a class="active" href="#">На главную</a></li>
-  <li><a href="/photos">Галерея</a></li>
-  <li><a href="#">Контакты</a></li>
+  <li><a {{ nav_act_index }} href="/">На главную</a></li>
+  <li><a {{ nav_act_gallery }} href="/gallery">Галерея</a></li>
+  <li><a {{ nav_active_contacts }} href="#">Контакты</a></li>
 </ul>
 
 
