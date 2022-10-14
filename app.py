@@ -1,7 +1,12 @@
 from flask import Flask, render_template, url_for
+import os
 
 app = Flask(__name__)
 
+
+def get_photos_links_from_folder(folder_path="static/images/gallery"):
+    images_urls =  [f'{folder_path}/{name}' for name in os.listdir(folder_path)]
+    return images_urls
 
 @app.route('/')
 def index():  # put application's code here
@@ -14,7 +19,9 @@ def index():  # put application's code here
 def samples():
     nav_act = "class=active"
     title = 'Галерея'
-    return render_template('gallery.html', title=title, nav_act_gallery=nav_act)
+    css = url_for('static', filename='styles/index.css')
+    photos_list = get_photos_links_from_folder()
+    return render_template('gallery.html', title=title, nav_act_gallery=nav_act, css=css, images_urls=photos_list)
 
 @app.route('/about/')
 @app.route('/about')

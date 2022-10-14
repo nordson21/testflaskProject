@@ -38,12 +38,15 @@ body{
 }
 /*Верхнее меню*/
 ul.topnav {
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
     border-radius: 5px;
     font-size:1.5vw;
     list-style-type: none;
     margin: 10px;
     padding: 0;
-    overflow: hidden;
+
      /* Цвет бэкграунда*/
 background: rgb(228,213,255);
 background: linear-gradient(0deg, rgba(228,213,255,1) 0%, rgba(255,255,255,1) 6%, rgba(255,255,255,1) 96%, rgba(228,213,255,1) 100%);
@@ -51,7 +54,8 @@ background: linear-gradient(0deg, rgba(228,213,255,1) 0%, rgba(255,255,255,1) 6%
 
 }
 
-ul.topnav li {float: left;}
+
+
 
 ul.topnav li a {
     display: block;
@@ -66,10 +70,13 @@ ul.topnav li a:hover:not(.active) {background-color: #DAC5FF;} /*Цвет вкл
 ul.topnav li a.active {background-color: #CEB2FF;} /*Цвет активной вкладки*/
 
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 767px){
     ul.topnav {font-size:5vw;}
     ul.topnav li.right,
     ul.topnav li {float: none;}
+    .topnav {
+        flex-direction: column;
+    }
 }
 /*Верхнее меню закончили*/
 /*Нижнее меню*/
@@ -139,7 +146,7 @@ img {
         max-width: 100%;
 }
 /*Тут адаптивность, если экран меньше 800 меняем направление флексбокса на столбец*/
-@media (max-width: 800px) {
+@media (max-width: 767px) {
     .grid {
         flex-direction: column;
     }
@@ -149,6 +156,34 @@ img {
     .photo{
         min-width: 300px;
     }
+}
+/*Ниже карточки фотографий в галерее*/
+#container {
+    background-color: whitesmoke;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+.el{
+    background-color: white;
+        max-width: 600px;
+    padding: 5px;
+    border: 1px solid darkgray;
+    margin: 5px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px 2px lightgrey;
+    height: auto;
+}
+.el img {
+    max-width: 100%;
+}
+.el .img_name{
+    text-align: center;
+    margin: 5px;
+    font-size: calc(20px + 0.390625vw);
 }
 /*Переназначаем ссылки, что бы текст не синел и не фиолетовел*/
 a {
