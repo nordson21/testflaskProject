@@ -136,6 +136,7 @@ img {
 .el{
     background-color: white;
     max-width: 400px;
+    max-height: 800px;
     padding: 5px;
     border: 1px solid darkgray;
     margin: 5px;
