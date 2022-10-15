@@ -126,7 +126,6 @@ img {
 }
 /*Ниже карточки фотографий в галерее*/
 #container {
-    background-color: whitesmoke;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -158,9 +157,7 @@ a {
   text-decoration: inherit; /* no underline */
 }
 
-.new_topnav {
-    background-image: linear-gradient(to bottom, #ffffff, #fcfcfc, #fafafa, #f7f7f7, #f5f5f5);
-}
+
 
 /*Ниже тест кнопки*/
 div[class*=box] {
