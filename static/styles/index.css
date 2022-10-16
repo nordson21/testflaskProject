@@ -136,12 +136,11 @@ img {
 .el{
     background-color: white;
     max-width: 400px;
-    max-height: 800px;
     padding: 5px;
-    border: 1px solid darkgray;
+    border: 1px white;
     margin: 5px;
     border-radius: 5px;
-    box-shadow: 2px 2px 8px 2px lightgrey;
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     height: auto;
 }
 .el img {
