@@ -26,6 +26,7 @@ def add_message_in_db(user: str, message: str):
         INSERT INTO messages (user_id, message, date) VALUES('{user}', '{message}', {message_time})
         """)
         db.commit()
+        print('DB closed')
 
 
 app = Flask(__name__)
