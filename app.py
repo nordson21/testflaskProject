@@ -40,7 +40,15 @@ def gallery(gallery_id):
 @app.errorhandler(404)
 def error_404(error):
     title = f'{error}'
-    return 'Такой страницы нет!', 404
+    return 'Такой страницы нет на сайте!', 404
+
+
+@app.route('/feedback')
+def index():  # put application's code here
+    title = 'Оставить отзыв'
+    css = url_for('static', filename='styles/index.css')
+    return render_template('leave_feedback.html', title=title, css=css)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
