@@ -1,5 +1,32 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 import os
+import sqlite3
+from datetime import datetime
+
+
+def add_message_in_db(user: str, message: str):
+    with sqlite3.connect("site.db") as db:
+        print('db started')
+        message_time = int(datetime.timestamp(datetime.now()))
+        cur = db.cursor()
+        #  Включаем защиту от дурака, если user в таблице users не создан, то будет ошибка.
+        cur.execute("""PRAGMA foreign_keys=on;""")
+        cur.execute("""
+        CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY NOT NULL)
+        """)
+        cur.execute("""
+        CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id TEXT NOT NULL , message TEXT,
+        date INTEGER,
+        FOREIGN KEY (user_id) REFERENCES users (id))
+        """)
+        cur.execute(f"""
+        INSERT OR IGNORE INTO users(id) VALUES('{user}')
+        """)
+        cur.execute(f"""
+        INSERT INTO messages (user_id, message, date) VALUES('{user}', '{message}', {message_time})
+        """)
+        db.commit()
+
 
 app = Flask(__name__)
 
@@ -43,11 +70,25 @@ def error_404(error):
     return 'Такой страницы нет на сайте!', 404
 
 
-@app.route('/feedback')
-def index():  # put application's code here
+@app.route('/feedback', methods=['GET', 'POST'])
+def feedback():  # put application's code here
     title = 'Оставить отзыв'
     css = url_for('static', filename='styles/index.css')
-    return render_template('leave_feedback.html', title=title, css=css)
+    client_contact = None  # Сюда примем контакт клиента.
+    client_message = None  # Сюда примем сообщение клиента.
+    server_message = None  # А сюда запишем сообщение от сервера.
+    if request.method == 'POST':  # ну тут всё ясно, наверное.
+        # Принимаем строку из формы с именем 'contact' и записываем в переменную, прилетает строка.
+        client_contact = request.form.get('contact')
+        # Принимаем строку из формы с именем 'message' и записываем в переменную, прилетает строка.
+        client_message = request.form.get('message')
+    # Если сообщение от клиента не пустое, то составляем строку-сообщение, что отзыв отправлен.
+    if client_message != '' and client_contact != '' and client_message != None and client_contact != None:
+        server_message = f'Вы добавили отправили контакт {client_contact} и сообщение {client_message}'
+        print('Контакт клиента', client_contact)
+        print('Сообщение клиента', client_message)
+        add_message_in_db(client_contact, client_message)
+    return render_template('leave_feedback.html', message=server_message, title=title, css=css)
 
 
 if __name__ == '__main__':

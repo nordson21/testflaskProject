@@ -255,3 +255,28 @@ div[class*=box] {
         max-width: 100px;
     }
 }
+form {
+    margin: auto;
+    margin-top: 50px;
+}
+form div{
+    margin: auto;
+    width: 60%;
+    font-size: calc(20px + 0.390625vw);
+    text-align: center;
+    overflow-wrap: break-word;
+}
+form button{
+    background-color: white;
+    font-size: calc(20px + 0.390625vw);
+}
+.text_in_form {
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgray;
+    text-align: center;
+    /*автоматический размер шрифта, в зависимости от размера экрана*/
+    font-size: calc(20px + 0.390625vw);
+    min-width: 200px;
+    width: 100%;
+}

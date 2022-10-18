@@ -1,4 +1,41 @@
 {% extends 'layout.html' %} <!-- наследуем layout.html -->
 {% block inbody_content %} <!-- открываем блок, который есть в layout.html -->
+{#Ниже создадим тэг form с параметром action="", и параметром method="post".#}
+{#    Данный тэг - обёртка одной или группы форм. action="" означает, что перехода на#}
+{#    другую страницу не будет, method="post" понятно что означает.#}
+
+<form action="" method="post">
+{#Внутри этого тэга мы создаём формы.#}
+    {#Сначала форма для приёма контакта#}
+    <div class="contact_form">
+        <label for="contact">
+            Ваш номер телефона или email <br> <input class="text_in_form" required minlength="5" maxlength="30" type="text" name="contact">
+        </label> <br>
+    </div>
+    {#А теперь форма для приёма сообщения#}
+
+    <div class="message_form">
+        <label for="message">Сообщение <br>
+            <textarea class="text_in_form" required minlength="5" maxlength="30" name="message"></textarea>
+        </label>
+    </div>
+
+{#    Ниже создадим кнопку отправки сообщения#}
+
+    <div class="box-1">
+        <button class="btn btn-one" type="submit">
+            <span>ОТПРАВИТЬ</span>
+        </button>
+    </div>
+
+
+        <div class="message_from_server">А сюда мы выведем ответ от сервера шаблонизатором jinja2 <br>
+        По умолчанию в переменной лежит None
+
+         {{ message }}</div>
+{#    Кнопка создана, закрываем тэг form#}
+</form>
+
+
 
 {% endblock inbody_content %} <!-- закрываем блок, который есть в layout.html -->
