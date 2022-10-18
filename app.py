@@ -42,12 +42,5 @@ def error_404(error):
     title = f'{error}'
     return 'Такой страницы нет!', 404
 
-@app.route('/testgallery')
-def test_gallery():
-    title = 'тест Галерея'
-    css = url_for('static', filename='styles/testgallery.css')
-    photos_list = get_photos_links_from_folder()
-    return render_template('tetstgal-grid.html', title=title, css=css, images_urls=photos_list)
-
 if __name__ == '__main__':
     app.run(debug=True)
