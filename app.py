@@ -33,8 +33,15 @@ app = Flask(__name__)
 
 
 def get_photos_links_from_folder(folder_path="static/images/gallery"):
-    images_urls = sorted([f'{folder_path}/{name}' for name in os.listdir(folder_path)])
+    images_urls = sorted([f'{folder_path}/{name}' for name in os.listdir(folder_path) if os.path.isfile(folder_path + '/' + name)])
     return images_urls
+
+
+@app.errorhandler(404)
+def error_404(error):
+    title = f'{error}'
+    css = url_for('static', filename='styles/index.css')
+    return render_template('404.html', title=title, css=css)
 
 
 @app.route('/')
@@ -61,14 +68,13 @@ def about():
 
 @app.route('/gallery/<gallery_id>')
 def gallery(gallery_id):
-    # title = f'Галерея {gallery_id}'
-    return f'Тут будет галерея номер {gallery_id}'
-
-
-@app.errorhandler(404)
-def error_404(error):
-    title = f'{error}'
-    return 'Такой страницы нет на сайте!', 404
+    title = f'Галерея {gallery_id}'
+    css = url_for('static', filename='styles/index.css')
+    if gallery_id in os.listdir('static/images/gallery'):
+        photos_list = get_photos_links_from_folder('static/images/gallery/' + gallery_id)
+        return render_template('gallery.html', title=title, css=css, images_urls=photos_list)
+        return f'Тут будет галерея номер {gallery_id}'
+    return error_404()
 
 
 @app.route('/feedback', methods=['GET', 'POST'])
