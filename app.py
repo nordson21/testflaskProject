@@ -43,7 +43,7 @@ def error_404(error):
     css = url_for('static', filename='styles/index.css')
     return render_template('404.html', title=title, css=css)
 
-
+@app.route('/gallery') # Temporary!
 @app.route('/')
 def index():  # put application's code here
     title = 'Фотограф Юлия Карелина'
@@ -51,12 +51,12 @@ def index():  # put application's code here
     return render_template('index.html', title=title, css=css)
 
 
-@app.route('/gallery')
-def samples():
-    title = 'Галерея'
-    css = url_for('static', filename='styles/index.css')
-    photos_list = get_photos_links_from_folder()
-    return render_template('gallery.html', title=title, css=css, images_urls=photos_list)
+# @app.route('/gallery')
+# def samples():
+#     title = 'Галерея'
+#     css = url_for('static', filename='styles/index.css')
+#     photos_list = get_photos_links_from_folder()
+#     return render_template('gallery.html', title=title, css=css, images_urls=photos_list)
 
 
 @app.route('/about/')
