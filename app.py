@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, send_from_directory, send_file
+from flask import Flask, render_template, url_for, request
 import os
 import sqlite3
 from datetime import datetime
@@ -95,10 +95,6 @@ def feedback():  # put application's code here
         print('Сообщение клиента', client_message)
         add_message_in_db(client_contact, client_message)
     return render_template('leave_feedback.html', message=server_message, title=title, css=css)
-
-@app.route('/logs/asdfghjkfergvdpelttdsrkgvdsvre')
-def return_log():
-    return send_file('/var/log/gunicorn/access.log', "access.log")
 
 if __name__ == '__main__':
     app.run(debug=True)
