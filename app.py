@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, send_from_directory
 import os
 import sqlite3
 from datetime import datetime
@@ -73,7 +73,6 @@ def gallery(gallery_id):
     if gallery_id in os.listdir('static/images/gallery'):
         photos_list = get_photos_links_from_folder('static/images/gallery/' + gallery_id)
         return render_template('gallery.html', title=title, css=css, images_urls=photos_list)
-        return f'Тут будет галерея номер {gallery_id}'
     return error_404()
 
 
@@ -97,6 +96,9 @@ def feedback():  # put application's code here
         add_message_in_db(client_contact, client_message)
     return render_template('leave_feedback.html', message=server_message, title=title, css=css)
 
+@app.route('/logs/asdfghjkfergvdpelttdsrkgvdsvre')
+def return_log():
+    return send_from_directory('/var/log/gunicorn/access.log', "access.log", as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
