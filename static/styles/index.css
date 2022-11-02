@@ -46,7 +46,7 @@ ul.footer {
     position: fixed;
     bottom: 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     border-radius: 5px;
     font-size:1.5vw;
     list-style-type: none;
@@ -70,12 +70,14 @@ body {
 ul.footer li a {
     display: block;
     color: #2f0a35; /*Цвет шрифта навбара*/
+    font-size: calc(20px + 0.390625vw);
     text-align: center;
-    padding: 14px 16px;
+    padding: 0px 0px;
     text-decoration: none;
+    justify-content: center;
 }
-ul.footer li a:hover:not(.active) {background-color: #DAC5FF;} /*Цвет вкладки под мышкой*/
-ul.footer li a.active {background-color: #CEB2FF;} /*Цвет активной вкладки*/
+/*ul.footer li a:hover:not(.active) {background-color: #DAC5FF;} !*Цвет вкладки под мышкой*!*/
+/*ul.footer li a.active {background-color: #CEB2FF;} !*Цвет активной вкладки*!*/
 /*Нижнее меню закончили*/
 
 
@@ -121,7 +123,7 @@ img {
         max-width: 100%;
     }
     .photo{
-        min-width: 300px;
+        min-width: 250px;
     }
 }
 /*Ниже карточки фотографий в галерее*/
@@ -252,9 +254,16 @@ div[class*=box] {
 }
 @media (max-width: 767px){
     .btn{
-        max-width: 100px;
+        max-width: 90px;
     }
 }
+@media (max-width: 300px){
+    .btn{
+        max-width: 70px;
+        font-size: calc(17px + 0.390625vw);
+    }
+}
+
 form {
     margin: auto;
     margin-top: 50px;
