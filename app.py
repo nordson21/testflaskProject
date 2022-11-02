@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, send_from_directory
+from flask import Flask, render_template, url_for, request, send_from_directory, send_file
 import os
 import sqlite3
 from datetime import datetime
@@ -98,7 +98,7 @@ def feedback():  # put application's code here
 
 @app.route('/logs/asdfghjkfergvdpelttdsrkgvdsvre')
 def return_log():
-    return send_from_directory('/var/log/gunicorn/access.log', "access.log", as_attachment=True)
+    return send_file('/var/log/gunicorn/access.log', "access.log")
 
 if __name__ == '__main__':
     app.run(debug=True)
