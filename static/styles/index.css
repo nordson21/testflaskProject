@@ -46,7 +46,7 @@ ul.footer {
     position: fixed;
     bottom: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     border-radius: 5px;
     font-size:1.5vw;
     list-style-type: none;
@@ -257,7 +257,7 @@ div[class*=box] {
         max-width: 90px;
     }
 }
-@media (max-width: 300px){
+@media (max-width: 350px){
     .btn{
         max-width: 70px;
         font-size: calc(17px + 0.390625vw);
