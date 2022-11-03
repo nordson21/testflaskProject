@@ -67,13 +67,6 @@ def error_404(error):
 def index():  # put application's code here
     title = 'Фотограф Юлия Карелина'
     css = url_for('static', filename='styles/index.css')
-    print(request.path)
-    # print(request.environ)
-    # r = request.environ
-    # ip = r['REMOTE_ADDR']
-    # req = r['werkzeug.request']
-    # time = datetime.now()
-    # user_agent = r['HTTP_USER_AGENT']
     add_request_to_db()
     return render_template('index.html', title=title, css=css)
 
