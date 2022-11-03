@@ -4,21 +4,28 @@ import sqlite3
 from datetime import datetime
 
 
+with sqlite3.connect("site.db") as db:
+    cur = db.cursor()
+    cur.execute("""
+            CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY NOT NULL)
+            """)
+    cur.execute("""
+            CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id TEXT NOT NULL , message TEXT,
+            date INTEGER,
+            FOREIGN KEY (user_id) REFERENCES users (id))
+            """)
+    cur.execute("""
+                    CREATE TABLE IF NOT EXISTS requests (id INTEGER PRIMARY KEY AUTOINCREMENT, date INTEGER,
+                    ip TEXT, request TEXT, agent TEXT)
+                    """)
+    db.commit()
+
+
 def add_message_in_db(user: str, message: str):
     with sqlite3.connect("site.db") as db:
         print('db started')
         message_time = int(datetime.timestamp(datetime.now()))
         cur = db.cursor()
-        #  Включаем защиту от дурака, если user в таблице users не создан, то будет ошибка.
-        cur.execute("""PRAGMA foreign_keys=on;""")
-        cur.execute("""
-        CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY NOT NULL)
-        """)
-        cur.execute("""
-        CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id TEXT NOT NULL , message TEXT,
-        date INTEGER,
-        FOREIGN KEY (user_id) REFERENCES users (id))
-        """)
         cur.execute(f"""
         INSERT OR IGNORE INTO users(id) VALUES('{user}')
         """)
@@ -27,6 +34,19 @@ def add_message_in_db(user: str, message: str):
         """)
         db.commit()
         print('DB closed')
+
+def add_request_to_db():
+    with sqlite3.connect("site.db") as db:
+        r = request.environ
+        date = int(datetime.timestamp(datetime.now()))
+        ip = r['REMOTE_ADDR']
+        req = f"{r['werkzeug.request']}"
+        # print(request)
+        user_agent = r['HTTP_USER_AGENT']
+        cur = db.cursor()
+        cur.execute(f"""INSERT INTO requests (date, ip, request, agent) VALUES(?, ?, ?, ?)""",
+                    (date, str(ip), req, user_agent))
+        db.commit()
 
 
 app = Flask(__name__)
@@ -48,7 +68,13 @@ def error_404(error):
 def index():  # put application's code here
     title = 'Фотограф Юлия Карелина'
     css = url_for('static', filename='styles/index.css')
-    print(request.environ)
+    # print(request.environ)
+    # r = request.environ
+    # ip = r['REMOTE_ADDR']
+    # req = r['werkzeug.request']
+    # time = datetime.now()
+    # user_agent = r['HTTP_USER_AGENT']
+    add_request_to_db()
     return render_template('index.html', title=title, css=css)
 
 
@@ -57,12 +83,14 @@ def samples():
     title = 'Галерея'
     css = url_for('static', filename='styles/index.css')
     photos_list = get_photos_links_from_folder()
+    add_request_to_db()
     return render_template('gallery.html', title=title, css=css, images_urls=photos_list)
 
 
 @app.route('/about/')
 @app.route('/about')
 def about():
+    add_request_to_db()
     # title = 'Обо мне'
     return 'Я фотограф'
 
@@ -73,12 +101,14 @@ def gallery(gallery_id):
     css = url_for('static', filename='styles/index.css')
     if gallery_id in os.listdir('static/images/gallery'):
         photos_list = get_photos_links_from_folder('static/images/gallery/' + gallery_id)
+        add_request_to_db()
         return render_template('gallery.html', title=title, css=css, images_urls=photos_list)
     return error_404()
 
 
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback():  # put application's code here
+    add_request_to_db()
     title = 'Оставить отзыв'
     css = url_for('static', filename='styles/index.css')
     client_contact = None  # Сюда примем контакт клиента.
@@ -96,6 +126,7 @@ def feedback():  # put application's code here
         print('Сообщение клиента', client_message)
         add_message_in_db(client_contact, client_message)
     return render_template('leave_feedback.html', message=server_message, title=title, css=css)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
