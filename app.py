@@ -41,7 +41,7 @@ def add_request_to_db():
         ip = request.remote_addr
         req = request.path
         user_agent = str(request.user_agent)
-        print(date, ip, req, user_agent)
+        print(datetime.now(), ip, req, user_agent)
         cur = db.cursor()
         cur.execute(f"""INSERT INTO requests (date, ip, request, agent) VALUES(?, ?, ?, ?)""",
                     (date, ip, req, user_agent))
