@@ -37,13 +37,11 @@ def add_message_in_db(user: str, message: str):
 
 def add_request_to_db():
     with sqlite3.connect("site.db") as db:
-        print(request.path)
-        print(request.user_agent)
-        print(request.remote_addr)
         date = int(datetime.timestamp(datetime.now()))
         ip = request.remote_addr
         req = request.path
         user_agent = str(request.user_agent)
+        print(date, ip, req, user_agent)
         cur = db.cursor()
         cur.execute(f"""INSERT INTO requests (date, ip, request, agent) VALUES(?, ?, ?, ?)""",
                     (date, ip, req, user_agent))
