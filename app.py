@@ -68,6 +68,7 @@ def error_404(error):
 def index():  # put application's code here
     title = 'Фотограф Юлия Карелина'
     css = url_for('static', filename='styles/index.css')
+    print(request.path)
     # print(request.environ)
     # r = request.environ
     # ip = r['REMOTE_ADDR']
@@ -78,7 +79,7 @@ def index():  # put application's code here
     return render_template('index.html', title=title, css=css)
 
 
-@app.route('/gallery')
+@app.route('/gallery')  # not used in html topnav!!!
 def samples():
     title = 'Галерея'
     css = url_for('static', filename='styles/index.css')
@@ -100,6 +101,7 @@ def gallery(gallery_id):
     title = f'Галерея {gallery_id}'
     css = url_for('static', filename='styles/index.css')
     if gallery_id in os.listdir('static/images/gallery'):
+        print(request.path)
         photos_list = get_photos_links_from_folder('static/images/gallery/' + gallery_id)
         add_request_to_db()
         return render_template('gallery.html', title=title, css=css, images_urls=photos_list)
@@ -108,6 +110,10 @@ def gallery(gallery_id):
 
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback():  # put application's code here
+    print(request.path)
+    print(request.method)
+    print(request.user_agent)
+    print(request.remote_addr)
     add_request_to_db()
     title = 'Оставить отзыв'
     css = url_for('static', filename='styles/index.css')
