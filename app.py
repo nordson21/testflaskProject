@@ -37,15 +37,16 @@ def add_message_in_db(user: str, message: str):
 
 def add_request_to_db():
     with sqlite3.connect("site.db") as db:
-        r = request.environ
+        print(request.path)
+        print(request.user_agent)
+        print(request.remote_addr)
         date = int(datetime.timestamp(datetime.now()))
-        ip = r['REMOTE_ADDR']
-        req = f"{r['werkzeug.request']}"
-        # print(request)
-        user_agent = r['HTTP_USER_AGENT']
+        ip = request.remote_addr
+        req = request.path
+        user_agent = str(request.user_agent)
         cur = db.cursor()
         cur.execute(f"""INSERT INTO requests (date, ip, request, agent) VALUES(?, ?, ?, ?)""",
-                    (date, str(ip), req, user_agent))
+                    (date, ip, req, user_agent))
         db.commit()
 
 
@@ -110,10 +111,6 @@ def gallery(gallery_id):
 
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback():  # put application's code here
-    print(request.path)
-    print(request.method)
-    print(request.user_agent)
-    print(request.remote_addr)
     add_request_to_db()
     title = 'Оставить отзыв'
     css = url_for('static', filename='styles/index.css')
