@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, redirect
 import os
 import sqlite3
 from datetime import datetime
@@ -120,6 +120,17 @@ def feedback():  # put application's code here
         print('Сообщение клиента', client_message)
         add_message_in_db(client_contact, client_message)
     return render_template('leave_feedback.html', message=server_message, title=title, css=css)
+
+@app.route('/insta')
+def insta():
+    add_request_to_db()
+    return redirect("https://instagram.com/karelina_foto/", code=302)
+
+
+@app.route('/vk')
+def vk():
+    add_request_to_db()
+    return redirect("https://vk.com/karelinajulietta", code=302)
 
 
 if __name__ == '__main__':
