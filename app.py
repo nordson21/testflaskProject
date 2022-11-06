@@ -133,5 +133,13 @@ def vk():
     return redirect("https://vk.com/karelinajulietta", code=302)
 
 
+@app.route('/matinee_price')
+def matinee_price():
+    title = 'Цены на утренники'
+    css = url_for('static', filename='styles/index.css')
+    add_request_to_db()
+    return render_template('matinee_price.html', title=title, css=css)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

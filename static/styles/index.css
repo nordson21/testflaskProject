@@ -256,11 +256,17 @@ div[class*=box] {
     .btn{
         max-width: 90px;
     }
+    .btn-x{
+        max-width: 500px;
+    }
 }
 @media (max-width: 350px){
     .btn{
         max-width: 70px;
         font-size: calc(17px + 0.390625vw);
+    }
+    .btn-x{
+        max-width: 300px;
     }
 }
 
@@ -289,3 +295,71 @@ form button{
     min-width: 200px;
     width: 100%;
 }
+
+/*Страница с ценами на утренники*/
+
+div.allpage{
+    margin: auto;
+    padding: 5px;
+    max-width: 1200px;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+    font-size: calc(20px + 0.390625vw);
+    font-style: italic;
+}
+
+div.header{
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid lightgray;
+    text-align: center;
+}
+div.header h1 {
+    font-size: calc(20px + 0.390625vw);
+    font-weight: 600;
+}
+div.price{
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid lightgray;
+}
+div.allpage a{
+    font-weight: 600;
+    text-decoration: underline;
+}
+div.action{
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid lightgray;
+    background-color: #fee8ff;
+}
+div.price span{
+    font-style: italic;
+}
+div.price_about .photo{
+    max-width: 150mm;
+    margin: auto;
+}
+div.price_header{
+    font-size: calc(20px + 0.390625vw);
+    font-weight: 600;
+    font-style: normal;
+}
+div.price_rubles{
+    font-size: calc(20px + 0.390625vw);
+    font-weight: 600;
+    font-style: normal;
+}
+span.bold{
+    font-weight: 600;
+}
+div.index_url{
+    font-size: calc(17px + 0.390625vw);
+    text-decoration: underline;
+}
+.btn-x{
+    width: 500px;
+        max-width: 500px;
+    }
