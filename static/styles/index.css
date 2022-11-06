@@ -358,8 +358,10 @@ span.bold{
 div.index_url{
     font-size: calc(17px + 0.390625vw);
     text-decoration: underline;
+
 }
 .btn-x{
-    width: 500px;
-        max-width: 500px;
+    width: 270px;
+        max-width: 270px;
+    background: linear-gradient(0deg, rgba(245,245,245,1) 0%, rgba(254,235,255,1) 30%, rgba(254,235,255,1) 70%, rgba(255,255,255,1) 100%);
     }
