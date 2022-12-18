@@ -65,7 +65,7 @@ def error_404(error):
 
 @app.route('/')
 def index():  # put application's code here
-    title = 'Фотограф Юлия Карелина'
+    title = 'Фотограф Юлия Карелина фотосессии в Крыму'
     css = url_for('static', filename='styles/index.css')
     add_request_to_db()
     return render_template('index.html', title=title, css=css)
