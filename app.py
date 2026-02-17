@@ -100,6 +100,18 @@ def gallery(gallery_id):
     return error_404()
 
 
+@app.route('/photoprojects/<gallery_id>')
+def photoprojects(gallery_id):
+    title = f'Галерея {gallery_id}'
+    css = url_for('static', filename='styles/index.css')
+    if gallery_id in os.listdir('static/images/photoprojects'):
+        print(request.path)
+        photos_list = get_photos_links_from_folder('static/images/photoprojects/' + gallery_id)
+        add_request_to_db()
+        return render_template('gallery_for_photoproject.html', title=title, css=css, images_urls=photos_list)
+    return error_404()
+
+
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback():  # put application's code here
     add_request_to_db()
@@ -141,12 +153,12 @@ def matinee_price():
     return render_template('matinee_price.html', title=title, css=css)
 
 
-@app.route('/photosession_price')
-def photosession_price():
+@app.route('/photoproject_price')
+def photoproject_price():
     title = 'Цены на фотопроекты'
     css = url_for('static', filename='styles/index.css')
     add_request_to_db()
-    return render_template('photosession_price.html', title=title, css=css)
+    return render_template('photoproject_price.html', title=title, css=css)
 
 
 if __name__ == '__main__':
