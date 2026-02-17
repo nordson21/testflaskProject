@@ -141,5 +141,13 @@ def matinee_price():
     return render_template('matinee_price.html', title=title, css=css)
 
 
+@app.route('/photosession_price')
+def matinee_price():
+    title = 'Цены на фотопроекты'
+    css = url_for('static', filename='styles/index.css')
+    add_request_to_db()
+    return render_template('photosession_price', title=title, css=css)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
