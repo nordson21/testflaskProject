@@ -146,7 +146,7 @@ def photosession_price():
     title = 'Цены на фотопроекты'
     css = url_for('static', filename='styles/index.css')
     add_request_to_db()
-    return render_template('photosession_price', title=title, css=css)
+    return render_template('photosession_price.html', title=title, css=css)
 
 
 if __name__ == '__main__':
