@@ -142,7 +142,7 @@ def matinee_price():
 
 
 @app.route('/photosession_price')
-def matinee_price():
+def photosession_price():
     title = 'Цены на фотопроекты'
     css = url_for('static', filename='styles/index.css')
     add_request_to_db()
