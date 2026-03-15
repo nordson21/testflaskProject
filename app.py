@@ -138,6 +138,10 @@ def insta():
     add_request_to_db()
     return redirect("https://instagram.com/karelina_foto/", code=302)
 
+@app.route('/max')
+def max():
+    add_request_to_db()
+    return redirect("https://max.ru/u/f9LHodD0cOJmnPsRLxoejiOuF92NC8_wQ1chS9P-qxJM5tT23jHYMaOK3QI", code=302)
 
 @app.route('/vk')
 def vk():
