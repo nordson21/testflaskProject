@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, send_file
 import os
 import sqlite3
 from datetime import datetime
@@ -164,6 +164,12 @@ def photoproject_price():
     add_request_to_db()
     return render_template('photoproject_price.html', title=title, css=css)
 
+@app.route("/.well-known/<path:name>")
+def download_file(name):
+    print(name)
+    return send_file(
+         name, as_attachment=True
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)
