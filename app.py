@@ -167,7 +167,7 @@ def photoproject_price():
 @app.route("/.well-known/<path:name>")
 def download_file(name):
     print(name)
-    name = "/.well-known/" + name
+    name = "root/testflaskProject/.well-known/" + name
     print(name)
     return send_file(
           name, as_attachment=True
