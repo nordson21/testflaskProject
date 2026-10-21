@@ -170,7 +170,7 @@ def download_file(name):
     name = ".well-known/" + name
     print(name)
     return send_file(
-          name, as_attachment=True
+          name, as_attachment=False
     )
 
 if __name__ == '__main__':
